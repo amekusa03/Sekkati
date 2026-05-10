@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Sekkati.Views.BrowseWindow"
+        Title="参照 — SekkaTi"
+        Width="600" Height="400"
+        WindowStartupLocation="CenterScreen">
+
+    <TextBox x:Name="Viewer"
+             IsReadOnly="True"
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             FontFamily="Monospace"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             VerticalContentAlignment="Top"
+             Padding="4"
+             BorderThickness="0"
+             CornerRadius="0"
+             ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+
+</Window>

@@ -1,0 +1,52 @@
+1. 「プラットフォームに依存しない」プロジェクト構成を作る
+まずは、特定のUI（Web画面やGUI）を持たない 「クラスライブラリ」 プロジェクトから始めます。これにより、中身のロジックだけを先に作り込むことができます。
+
+ターミナルで以下のコマンドを実行して、ディレクトリ構造を作成しましょう。
+
+bash
+ Show full code block 
+# プロジェクト全体のルートディレクトリを作成
+mkdir MyAwesomeApp
+cd MyAwesomeApp
+
+# 1. ソリューションファイル（全体を束ねるファイル）を作成
+dotnet new sln -n MyAwesomeApp
+
+# 2. コアロジック用のプロジェクト（クラスライブラリ）を作成
+dotnet new classlib -n MyAwesomeApp.Core
+
+# 3. ソリューションにプロジェクトを追加
+dotnet sln add MyAwesomeApp.Core/MyAwesomeApp.Core.csproj
+
+# 4. VS Codeで開く
+code .
+2. spec.md に基づく設計の進め方
+spec.md で定義した「やりたいこと」をコードに落とし込む際、以下の順序で進めることをお勧めします。
+
+Domain Models (MyAwesomeApp.Core 内): アプリで扱うデータ（User, Order, Productなど）を class や record として定義します。
+Interfaces: 「何ができるか」を定義します（例：IUserRepository, IPaymentService）。
+Business Logic: 具体的な計算やルールの処理を記述します。
+3. プラットフォームを決定する際の判断基準
+.NET を使っている場合、Ubuntu環境では以下のような選択肢があります。spec.md を書く際の参考にしてください。
+
+Web API として公開したい: dotnet new webapi
+将来的にブラウザ（React/Vue）やスマホアプリから使いたい場合。
+コマンドラインツールとして使いたい: dotnet new console
+自動化ツールや開発者向けツールの場合。
+デスクトップアプリを作りたい（Linux/Windows両対応）:
+.NET標準ではありませんが、Avalonia UI や Uno Platform が Ubuntu でのGUI開発には一般的です。
+4. おすすめの構成案（クリーンアーキテクチャの入り口）
+プラットフォームが決まったら、以下のようにプロジェクトを追加して、Core を参照させるようにします。
+
+bash
+# 例：後からWeb APIを追加する場合
+dotnet new webapi -n MyAwesomeApp.Api
+
+# ApiプロジェクトからCoreプロジェクトを使えるように参照を追加
+dotnet add MyAwesomeApp.Api/MyAwesomeApp.Api.csproj reference MyAwesomeApp.Core/MyAwesomeApp.Core.csproj
+
+# ソリューションに追加
+dotnet sln add MyAwesomeApp.Api/MyAwesomeApp.Api.csproj
+修正・改善のヒント
+Unit Testを最初に入れる: プラットフォームが決まっていない間は、動作確認のためにユニットテストプロジェクト（dotnet new xunit）を先に作り、Core のロジックをテストしながら進めるのが最も効率的です。
+C# Dev Kit 拡張機能: VS Codeで開発するなら、Microsoft公式の「C# Dev Kit」を入れると、右クリックメニューから「プロジェクトの追加」などができるようになり、ウィザードに近い感覚で操作できます。

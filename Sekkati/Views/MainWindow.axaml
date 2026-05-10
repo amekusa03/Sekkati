@@ -1,0 +1,78 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Sekkati.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        x:Class="Sekkati.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="{Binding Title}"
+        Width="600" Height="100"
+        WindowStartupLocation="Manual">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <DockPanel LastChildFill="True">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="ファイル(_F)">
+                <MenuItem Header="新しいウィンドウ(_N)"
+                          InputGesture="Ctrl+N"
+                          Click="OnNewWindow"/>
+                <MenuItem Header="開く(_O)..."
+                          InputGesture="Ctrl+O"
+                          Click="OnOpen"/>
+                <Separator/>
+                <MenuItem Header="上書き保存(_S)"
+                          InputGesture="Ctrl+S"
+                          Click="OnSave"/>
+                <MenuItem Header="名前を付けて保存(_A)..."
+                          InputGesture="Ctrl+Shift+S"
+                          Click="OnSaveAs"/>
+                <Separator/>
+                <MenuItem Header="閉じる(_C)"
+                          Click="OnClose"/>
+                <MenuItem Header="終了(_Q)"
+                          InputGesture="Ctrl+Q"
+                          Click="OnQuit"/>
+            </MenuItem>
+            <MenuItem Header="参照(_S)">
+                <MenuItem Header="1時間以内" Click="OnBrowse1Hour"/>
+                <MenuItem Header="今日" Click="OnBrowseToday"/>
+                <MenuItem Header="昨日" Click="OnBrowseYesterday"/>
+                <MenuItem Header="今週" Click="OnBrowseThisWeek"/>
+                <MenuItem Header="1ヶ月以内" Click="OnBrowse1Month"/>
+                <MenuItem Header="1年" Click="OnBrowse1Year"/>
+            </MenuItem>
+            <MenuItem Header="削除(_D)">
+                <MenuItem Header="1時間以内" Click="OnDelete1Hour"/>
+                <MenuItem Header="今日" Click="OnDeleteToday"/>
+                <MenuItem Header="昨日" Click="OnDeleteYesterday"/>
+                <MenuItem Header="今週" Click="OnDeleteThisWeek"/>
+                <MenuItem Header="1ヶ月以内" Click="OnDelete1Month"/>
+                <MenuItem Header="1年" Click="OnDelete1Year"/>
+            </MenuItem>
+<MenuItem Header="表示(_V)">
+                <MenuItem Header="ライト(_L)" x:Name="MenuThemeLight" Click="OnThemeLight"/>
+                <MenuItem Header="ダーク(_D)" x:Name="MenuThemeDark" Click="OnThemeDark"/>
+                <MenuItem Header="システム(_S)" x:Name="MenuThemeSystem" Click="OnThemeSystem"/>
+            </MenuItem>
+        </Menu>
+
+        <TextBox x:Name="Editor"
+                 Text="{Binding Content}"
+                 AcceptsReturn="True"
+                 AcceptsTab="True"
+                 TextWrapping="Wrap"
+                 FontFamily="Monospace"
+                 VerticalAlignment="Stretch"
+                 HorizontalAlignment="Stretch"
+                 VerticalContentAlignment="Top"
+                 Padding="4"
+                 BorderThickness="0"
+                 CornerRadius="0"/>
+    </DockPanel>
+
+</Window>

@@ -1,0 +1,12 @@
+# Build output
+bin/
+obj/
+
+# IDE / tools
+.vscode/
+.claude/
+GEMINI.md
+
+# OS
+.DS_Store
+Thumbs.db
