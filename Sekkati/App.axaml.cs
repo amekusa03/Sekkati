@@ -13,6 +13,8 @@ namespace Sekkati;
 
 public partial class App : Application
 {
+    public static bool IsShuttingDown { get; private set; }
+
     private readonly CancellationTokenSource _cts = new();
 
     public override void Initialize()
@@ -28,6 +30,8 @@ public partial class App : Application
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow();
+            // ShutdownRequested はウィンドウ Close より前に発火するため、ここでフラグを立てる
+            desktop.ShutdownRequested += (_, _) => IsShuttingDown = true;
             desktop.Exit += (_, _) => _cts.Cancel();
 
             SingleInstance.StartListening(() =>

@@ -278,10 +278,14 @@ public partial class MainWindow : Window
     }
 
     // X ボタンや「閉じる」はウィンドウを隠す（アプリはバックグラウンドで継続）
+    // シャットダウン中はキャンセルしない（OS 終了をブロックしないため）
     protected override void OnClosing(WindowClosingEventArgs e)
     {
-        e.Cancel = true;
-        Hide();
+        if (!App.IsShuttingDown)
+        {
+            e.Cancel = true;
+            Hide();
+        }
         base.OnClosing(e);
     }
 
