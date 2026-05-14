@@ -54,10 +54,12 @@
                 <MenuItem Header="1ヶ月以内" Click="OnDelete1Month"/>
                 <MenuItem Header="1年" Click="OnDelete1Year"/>
             </MenuItem>
-<MenuItem Header="表示(_V)">
+            <MenuItem Header="表示(_V)">
                 <MenuItem Header="ライト(_L)" x:Name="MenuThemeLight" Click="OnThemeLight"/>
                 <MenuItem Header="ダーク(_D)" x:Name="MenuThemeDark" Click="OnThemeDark"/>
                 <MenuItem Header="システム(_S)" x:Name="MenuThemeSystem" Click="OnThemeSystem"/>
+                <Separator/>
+                <MenuItem Header="保持(_H)" x:Name="MenuHold" Click="OnHold"/>
             </MenuItem>
         </Menu>
 

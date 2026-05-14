@@ -45,8 +45,17 @@ public partial class MainWindow : Window
         return folder;
     }
 
+    private bool _isHeld = false;
+
+    private void OnHold(object? sender, RoutedEventArgs e)
+    {
+        _isHeld = !_isHeld;
+        MenuHold.Header = _isHeld ? "保持解除(_H)" : "保持(_H)";
+    }
+
     private async void OnDeactivated(object? sender, EventArgs e)
     {
+        if (_isHeld) return;
         if (OwnedWindows.Count > 0) return;
 
         if (!string.IsNullOrEmpty(Vm.Content))
