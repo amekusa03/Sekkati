@@ -5,11 +5,11 @@
         Width="600" Height="400"
         WindowStartupLocation="CenterScreen">
 
+    <!-- FontFamily="Monospace" は環境によりアルファベット大文字のグリフが●等に化ける場合があるためコメントアウト -->
     <TextBox x:Name="Viewer"
              IsReadOnly="True"
              AcceptsReturn="True"
              TextWrapping="Wrap"
-             FontFamily="Monospace"
              VerticalAlignment="Stretch"
              HorizontalAlignment="Stretch"
              VerticalContentAlignment="Top"

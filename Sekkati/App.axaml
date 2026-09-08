@@ -12,4 +12,18 @@
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>
+
+    <TrayIcon.Icons>
+        <TrayIcons>
+            <TrayIcon Icon="/Assets/avalonia-logo.ico" ToolTipText="Sekkati" IsVisible="True" Clicked="OnTrayIconClicked">
+                <TrayIcon.Menu>
+                    <NativeMenu>
+                        <NativeMenuItem Header="表示(_S)" Click="OnTrayShowClicked" />
+                        <NativeMenuItemSeparator />
+                        <NativeMenuItem Header="終了(_Q)" Click="OnTrayQuitClicked" />
+                    </NativeMenu>
+                </TrayIcon.Menu>
+            </TrayIcon>
+        </TrayIcons>
+    </TrayIcon.Icons>
 </Application>

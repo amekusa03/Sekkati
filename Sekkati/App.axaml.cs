@@ -1,6 +1,8 @@
+using System;
 using System.Linq;
 using System.Threading;
 using Avalonia;
+using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
@@ -29,6 +31,7 @@ public partial class App : Application
             // Avoid duplicate validations from both Avalonia and the CommunityToolkit.
             // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
             DisableAvaloniaDataAnnotationValidation();
+            desktop.ShutdownMode = ShutdownMode.OnExplicitShutdown;
             desktop.MainWindow = new MainWindow();
             // ShutdownRequested はウィンドウ Close より前に発火するため、ここでフラグを立てる
             desktop.ShutdownRequested += (_, _) => IsShuttingDown = true;
@@ -38,16 +41,50 @@ public partial class App : Application
             {
                 Dispatcher.UIThread.Post(() =>
                 {
+                    /*
                     var win = desktop.MainWindow;
                     if (win is null) return;
                     if (!win.IsVisible)
                         win.Show();
                     win.Activate();
+                    */
+                    ShowWindow();
                 });
             }, _cts.Token);
         }
 
         base.OnFrameworkInitializationCompleted();
+    }
+
+    private void ShowWindow()
+    {
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            var win = desktop.MainWindow;
+            if (win is null) return;
+            if (!win.IsVisible)
+                win.Show();
+            win.Activate();
+        }
+    }
+
+    private void OnTrayIconClicked(object? sender, EventArgs e)
+    {
+        ShowWindow();
+    }
+
+    private void OnTrayShowClicked(object? sender, EventArgs e)
+    {
+        ShowWindow();
+    }
+
+    private void OnTrayQuitClicked(object? sender, EventArgs e)
+    {
+        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
+        {
+            IsShuttingDown = true;
+            desktop.Shutdown();
+        }
     }
 
     private void DisableAvaloniaDataAnnotationValidation()

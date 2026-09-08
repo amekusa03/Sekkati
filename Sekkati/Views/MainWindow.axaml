@@ -63,12 +63,12 @@
             </MenuItem>
         </Menu>
 
+        <!-- FontFamily="Monospace" は環境によりアルファベット大文字のグリフが●等に化ける場合があるためコメントアウト -->
         <TextBox x:Name="Editor"
                  Text="{Binding Content}"
                  AcceptsReturn="True"
                  AcceptsTab="True"
                  TextWrapping="Wrap"
-                 FontFamily="Monospace"
                  VerticalAlignment="Stretch"
                  HorizontalAlignment="Stretch"
                  VerticalContentAlignment="Top"
