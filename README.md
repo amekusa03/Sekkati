@@ -1,46 +1,48 @@
-# せっかち
+# Sekkati
 
-せっかちさんのためのメモ帳。さっと出して、書いて、しまう。
+[日本語 (Japanese)](README.JP.md)
 
-## 特徴
+A scratchpad notepad for impatient people. Pop it up, jot it down, and tuck it away.
 
-- **ホットキーで即起動** — OS のショートカット設定で呼び出せる
-- **自動保存** — フォーカスを失ったら内容があれば自動保存して閉じる
-- **ファイル名不要** — 保存先・ファイル名はタイムスタンプで自動決定
-- **時系列参照** — 「今日」「昨日」などで過去のメモをさっと読み返せる
-- **常駐** — バックグラウンドで待機、2重起動しない
+## Features
 
-## 動作環境
+- **Instant access via hotkey** — Bring it up anytime with an OS shortcut
+- **Auto-save on blur** — Automatically saves if there is content and closes when losing focus
+- **No filename required** — File paths and names are automatically generated based on timestamps
+- **Timeline browsing** — Quick retrospective reading by "Today", "Yesterday", and more
+- **Background resident** — Stays active in the background, preventing multiple instances
 
-- Ubuntu（必須）
-- Windows（対応）
+## Requirements / Environment
+
+- Ubuntu (Primary target)
+- Windows (Supported)
 - .NET 10 / Avalonia UI
 
-## セットアップ
+## Setup
 
-### ビルド
+### Build
 
 ```bash
 dotnet build
 ```
 
-### 起動
+### Run
 
 ```bash
 dotnet run --project Sekkati/Sekkati.csproj
 ```
 
-### ホットキー登録（Ubuntu / GNOME）
+### Hotkey Registration (Ubuntu / GNOME)
 
-設定 → キーボード → カスタムショートカット で以下を登録：
+Go to **Settings** → **Keyboard** → **Custom Shortcuts**, and configure as follows:
 
-| 項目 | 値 |
-|------|----|
-| 名前 | せっかち |
-| コマンド | `/path/to/Sekkati` |
-| ショートカット | 任意（例: Super+Alt+X） |
+| Setting | Value |
+|---------|-------|
+| Name | Sekkati |
+| Command | `/path/to/Sekkati` |
+| Shortcut | Any (e.g., `Super+Alt+X`) |
 
-### ホットキー登録（Windows / AutoHotkey）
+### Hotkey Registration (Windows / AutoHotkey)
 
 ```ahk
 ; AutoHotkey v2
@@ -49,26 +51,26 @@ dotnet run --project Sekkati/Sekkati.csproj
 }
 ```
 
-## 使い方
+## Usage
 
-1. ホットキーでウィンドウを呼び出す
-2. メモを書く
-3. ウィンドウの外をクリック → 自動保存してウィンドウが閉じる
-4. 何も書かなければ保存しない
+1. Summon the window with your hotkey.
+2. Jot down your notes.
+3. Click outside the window → The note is automatically saved and the window hides.
+4. If nothing is entered, no file is saved.
 
-### 過去のメモを読む
+### Browsing Past Notes
 
-メニュー **参照** から期間を選ぶと、該当期間のメモを新しい順に表示：
+Select a time period from the **Browse** menu to view notes in reverse chronological order:
 
-| メニュー | 対象 |
-|---------|------|
-| 1時間以内 | 直近1時間 |
-| 今日 | 今日0時以降 |
-| 昨日 | 昨日1日分 |
-| 今週 | 月曜日以降 |
-| 1ヶ月以内 | 直近30日 |
-| 1年 | 直近1年 |
+| Menu | Range |
+|------|-------|
+| Past 1 Hour | Notes from the last 1 hour |
+| Today | Notes from today (since 00:00) |
+| Yesterday | Notes from yesterday |
+| This Week | Notes from Monday to now |
+| Past 1 Month | Notes from the last 30 days |
+| Past 1 Year | Notes from the last 1 year |
 
-## 保存先
+## Storage Location
 
 `~/Documents/Sekkati/yyyyMMddHHmmss.txt`

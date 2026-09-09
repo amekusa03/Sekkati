@@ -1,7 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="Sekkati.Views.BrowseWindow"
-        Title="参照 — SekkaTi"
+        Title="Browse — SekkaTi"
         Width="600" Height="400"
         WindowStartupLocation="CenterScreen">
 

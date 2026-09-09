@@ -16,8 +16,9 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string _content = string.Empty;
 
+    // public string Title => (FilePath is null ? "無題" : Path.GetFileName(FilePath)) + (IsModified ? " *" : "") + " — SekkaTi";
     public string Title =>
-        (FilePath is null ? "無題" : Path.GetFileName(FilePath))
+        (FilePath is null ? "Untitled" : Path.GetFileName(FilePath))
         + (IsModified ? " *" : "")
         + " — SekkaTi";
 

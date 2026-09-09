@@ -17,49 +17,75 @@
 
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
-            <MenuItem Header="ファイル(_F)">
-                <MenuItem Header="新しいウィンドウ(_N)"
+            <!-- <MenuItem Header="ファイル(_F)"> -->
+            <MenuItem Header="File(_F)">
+                <!-- <MenuItem Header="新しいウィンドウ(_N)" InputGesture="Ctrl+N" Click="OnNewWindow"/> -->
+                <MenuItem Header="New Window(_N)"
                           InputGesture="Ctrl+N"
                           Click="OnNewWindow"/>
-                <MenuItem Header="開く(_O)..."
+                <!-- <MenuItem Header="開く(_O)..." InputGesture="Ctrl+O" Click="OnOpen"/> -->
+                <MenuItem Header="Open(_O)..."
                           InputGesture="Ctrl+O"
                           Click="OnOpen"/>
                 <Separator/>
-                <MenuItem Header="上書き保存(_S)"
+                <!-- <MenuItem Header="上書き保存(_S)" InputGesture="Ctrl+S" Click="OnSave"/> -->
+                <MenuItem Header="Save(_S)"
                           InputGesture="Ctrl+S"
                           Click="OnSave"/>
-                <MenuItem Header="名前を付けて保存(_A)..."
+                <!-- <MenuItem Header="名前を付けて保存(_A)..." InputGesture="Ctrl+Shift+S" Click="OnSaveAs"/> -->
+                <MenuItem Header="Save As(_A)..."
                           InputGesture="Ctrl+Shift+S"
                           Click="OnSaveAs"/>
                 <Separator/>
-                <MenuItem Header="閉じる(_C)"
+                <!-- <MenuItem Header="閉じる(_C)" Click="OnClose"/> -->
+                <MenuItem Header="Close(_C)"
                           Click="OnClose"/>
-                <MenuItem Header="終了(_Q)"
+                <!-- <MenuItem Header="終了(_Q)" InputGesture="Ctrl+Q" Click="OnQuit"/> -->
+                <MenuItem Header="Quit(_Q)"
                           InputGesture="Ctrl+Q"
                           Click="OnQuit"/>
             </MenuItem>
-            <MenuItem Header="参照(_S)">
-                <MenuItem Header="1時間以内" Click="OnBrowse1Hour"/>
-                <MenuItem Header="今日" Click="OnBrowseToday"/>
-                <MenuItem Header="昨日" Click="OnBrowseYesterday"/>
-                <MenuItem Header="今週" Click="OnBrowseThisWeek"/>
-                <MenuItem Header="1ヶ月以内" Click="OnBrowse1Month"/>
-                <MenuItem Header="1年" Click="OnBrowse1Year"/>
+            <!-- <MenuItem Header="参照(_S)"> -->
+            <MenuItem Header="Browse(_B)">
+                <!-- <MenuItem Header="1時間以内" Click="OnBrowse1Hour"/> -->
+                <MenuItem Header="Past 1 Hour" Click="OnBrowse1Hour"/>
+                <!-- <MenuItem Header="今日" Click="OnBrowseToday"/> -->
+                <MenuItem Header="Today" Click="OnBrowseToday"/>
+                <!-- <MenuItem Header="昨日" Click="OnBrowseYesterday"/> -->
+                <MenuItem Header="Yesterday" Click="OnBrowseYesterday"/>
+                <!-- <MenuItem Header="今週" Click="OnBrowseThisWeek"/> -->
+                <MenuItem Header="This Week" Click="OnBrowseThisWeek"/>
+                <!-- <MenuItem Header="1ヶ月以内" Click="OnBrowse1Month"/> -->
+                <MenuItem Header="Past 1 Month" Click="OnBrowse1Month"/>
+                <!-- <MenuItem Header="1年" Click="OnBrowse1Year"/> -->
+                <MenuItem Header="Past 1 Year" Click="OnBrowse1Year"/>
             </MenuItem>
-            <MenuItem Header="削除(_D)">
-                <MenuItem Header="1時間以内" Click="OnDelete1Hour"/>
-                <MenuItem Header="今日" Click="OnDeleteToday"/>
-                <MenuItem Header="昨日" Click="OnDeleteYesterday"/>
-                <MenuItem Header="今週" Click="OnDeleteThisWeek"/>
-                <MenuItem Header="1ヶ月以内" Click="OnDelete1Month"/>
-                <MenuItem Header="1年" Click="OnDelete1Year"/>
+            <!-- <MenuItem Header="削除(_D)"> -->
+            <MenuItem Header="Delete(_D)">
+                <!-- <MenuItem Header="1時間以内" Click="OnDelete1Hour"/> -->
+                <MenuItem Header="Past 1 Hour" Click="OnDelete1Hour"/>
+                <!-- <MenuItem Header="今日" Click="OnDeleteToday"/> -->
+                <MenuItem Header="Today" Click="OnDeleteToday"/>
+                <!-- <MenuItem Header="昨日" Click="OnDeleteYesterday"/> -->
+                <MenuItem Header="Yesterday" Click="OnDeleteYesterday"/>
+                <!-- <MenuItem Header="今週" Click="OnDeleteThisWeek"/> -->
+                <MenuItem Header="This Week" Click="OnDeleteThisWeek"/>
+                <!-- <MenuItem Header="1ヶ月以内" Click="OnDelete1Month"/> -->
+                <MenuItem Header="Past 1 Month" Click="OnDelete1Month"/>
+                <!-- <MenuItem Header="1年" Click="OnDelete1Year"/> -->
+                <MenuItem Header="Past 1 Year" Click="OnDelete1Year"/>
             </MenuItem>
-            <MenuItem Header="表示(_V)">
-                <MenuItem Header="ライト(_L)" x:Name="MenuThemeLight" Click="OnThemeLight"/>
-                <MenuItem Header="ダーク(_D)" x:Name="MenuThemeDark" Click="OnThemeDark"/>
-                <MenuItem Header="システム(_S)" x:Name="MenuThemeSystem" Click="OnThemeSystem"/>
+            <!-- <MenuItem Header="表示(_V)"> -->
+            <MenuItem Header="View(_V)">
+                <!-- <MenuItem Header="ライト(_L)" x:Name="MenuThemeLight" Click="OnThemeLight"/> -->
+                <MenuItem Header="Light(_L)" x:Name="MenuThemeLight" Click="OnThemeLight"/>
+                <!-- <MenuItem Header="ダーク(_D)" x:Name="MenuThemeDark" Click="OnThemeDark"/> -->
+                <MenuItem Header="Dark(_D)" x:Name="MenuThemeDark" Click="OnThemeDark"/>
+                <!-- <MenuItem Header="システム(_S)" x:Name="MenuThemeSystem" Click="OnThemeSystem"/> -->
+                <MenuItem Header="System(_S)" x:Name="MenuThemeSystem" Click="OnThemeSystem"/>
                 <Separator/>
-                <MenuItem Header="保持(_H)" x:Name="MenuHold" Click="OnHold"/>
+                <!-- <MenuItem Header="保持(_H)" x:Name="MenuHold" Click="OnHold"/> -->
+                <MenuItem Header="Hold(_H)" x:Name="MenuHold" Click="OnHold"/>
             </MenuItem>
         </Menu>
 

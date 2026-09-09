@@ -19,8 +19,10 @@ public partial class MainWindow : Window
 {
     private static readonly FilePickerFileType[] FileTypes =
     [
-        new FilePickerFileType("テキストファイル") { Patterns = ["*.txt", "*.md", "*.log"] },
-        new FilePickerFileType("すべてのファイル") { Patterns = ["*"] },
+        // new FilePickerFileType("テキストファイル") { Patterns = ["*.txt", "*.md", "*.log"] },
+        // new FilePickerFileType("すべてのファイル") { Patterns = ["*"] },
+        new FilePickerFileType("Text files") { Patterns = ["*.txt", "*.md", "*.log"] },
+        new FilePickerFileType("All files") { Patterns = ["*"] },
     ];
 
     private MainWindowViewModel Vm => (MainWindowViewModel)DataContext!;
@@ -50,7 +52,8 @@ public partial class MainWindow : Window
     private void OnHold(object? sender, RoutedEventArgs e)
     {
         _isHeld = !_isHeld;
-        MenuHold.Header = _isHeld ? "保持解除(_H)" : "保持(_H)";
+        // MenuHold.Header = _isHeld ? "保持解除(_H)" : "保持(_H)";
+        MenuHold.Header = _isHeld ? "Unhold(_H)" : "Hold(_H)";
     }
 
     private async void OnDeactivated(object? sender, EventArgs e)
@@ -77,51 +80,63 @@ public partial class MainWindow : Window
         Hide();
     }
 
+    // private async void OnBrowse1Hour(object? sender, RoutedEventArgs e) => await OpenBrowseWindow("1時間以内", DateTime.Now.AddHours(-1), DateTime.Now);
     private async void OnBrowse1Hour(object? sender, RoutedEventArgs e) =>
-        await OpenBrowseWindow("1時間以内", DateTime.Now.AddHours(-1), DateTime.Now);
+        await OpenBrowseWindow("Past 1 Hour", DateTime.Now.AddHours(-1), DateTime.Now);
 
+    // private async void OnBrowseToday(object? sender, RoutedEventArgs e) => await OpenBrowseWindow("今日", DateTime.Today, DateTime.Today.AddDays(1));
     private async void OnBrowseToday(object? sender, RoutedEventArgs e) =>
-        await OpenBrowseWindow("今日", DateTime.Today, DateTime.Today.AddDays(1));
+        await OpenBrowseWindow("Today", DateTime.Today, DateTime.Today.AddDays(1));
 
+    // private async void OnBrowseYesterday(object? sender, RoutedEventArgs e) => await OpenBrowseWindow("昨日", DateTime.Today.AddDays(-1), DateTime.Today);
     private async void OnBrowseYesterday(object? sender, RoutedEventArgs e) =>
-        await OpenBrowseWindow("昨日", DateTime.Today.AddDays(-1), DateTime.Today);
+        await OpenBrowseWindow("Yesterday", DateTime.Today.AddDays(-1), DateTime.Today);
 
     private async void OnBrowseThisWeek(object? sender, RoutedEventArgs e)
     {
         var today = DateTime.Today;
         var dow = (int)today.DayOfWeek;
         var monday = today.AddDays(dow == 0 ? -6 : -(dow - 1));
-        await OpenBrowseWindow("今週", monday, DateTime.Now);
+        // await OpenBrowseWindow("今週", monday, DateTime.Now);
+        await OpenBrowseWindow("This Week", monday, DateTime.Now);
     }
 
+    // private async void OnBrowse1Month(object? sender, RoutedEventArgs e) => await OpenBrowseWindow("1ヶ月以内", DateTime.Now.AddMonths(-1), DateTime.Now);
     private async void OnBrowse1Month(object? sender, RoutedEventArgs e) =>
-        await OpenBrowseWindow("1ヶ月以内", DateTime.Now.AddMonths(-1), DateTime.Now);
+        await OpenBrowseWindow("Past 1 Month", DateTime.Now.AddMonths(-1), DateTime.Now);
 
+    // private async void OnBrowse1Year(object? sender, RoutedEventArgs e) => await OpenBrowseWindow("1年", DateTime.Now.AddYears(-1), DateTime.Now);
     private async void OnBrowse1Year(object? sender, RoutedEventArgs e) =>
-        await OpenBrowseWindow("1年", DateTime.Now.AddYears(-1), DateTime.Now);
+        await OpenBrowseWindow("Past 1 Year", DateTime.Now.AddYears(-1), DateTime.Now);
 
+    // private async void OnDelete1Hour(object? sender, RoutedEventArgs e) => await DeleteFiles("1時間以内", DateTime.Now.AddHours(-1), DateTime.Now);
     private async void OnDelete1Hour(object? sender, RoutedEventArgs e) =>
-        await DeleteFiles("1時間以内", DateTime.Now.AddHours(-1), DateTime.Now);
+        await DeleteFiles("Past 1 Hour", DateTime.Now.AddHours(-1), DateTime.Now);
 
+    // private async void OnDeleteToday(object? sender, RoutedEventArgs e) => await DeleteFiles("今日", DateTime.Today, DateTime.Today.AddDays(1));
     private async void OnDeleteToday(object? sender, RoutedEventArgs e) =>
-        await DeleteFiles("今日", DateTime.Today, DateTime.Today.AddDays(1));
+        await DeleteFiles("Today", DateTime.Today, DateTime.Today.AddDays(1));
 
+    // private async void OnDeleteYesterday(object? sender, RoutedEventArgs e) => await DeleteFiles("昨日", DateTime.Today.AddDays(-1), DateTime.Today);
     private async void OnDeleteYesterday(object? sender, RoutedEventArgs e) =>
-        await DeleteFiles("昨日", DateTime.Today.AddDays(-1), DateTime.Today);
+        await DeleteFiles("Yesterday", DateTime.Today.AddDays(-1), DateTime.Today);
 
     private async void OnDeleteThisWeek(object? sender, RoutedEventArgs e)
     {
         var today = DateTime.Today;
         var dow = (int)today.DayOfWeek;
         var monday = today.AddDays(dow == 0 ? -6 : -(dow - 1));
-        await DeleteFiles("今週", monday, DateTime.Now);
+        // await DeleteFiles("今週", monday, DateTime.Now);
+        await DeleteFiles("This Week", monday, DateTime.Now);
     }
 
+    // private async void OnDelete1Month(object? sender, RoutedEventArgs e) => await DeleteFiles("1ヶ月以内", DateTime.Now.AddMonths(-1), DateTime.Now);
     private async void OnDelete1Month(object? sender, RoutedEventArgs e) =>
-        await DeleteFiles("1ヶ月以内", DateTime.Now.AddMonths(-1), DateTime.Now);
+        await DeleteFiles("Past 1 Month", DateTime.Now.AddMonths(-1), DateTime.Now);
 
+    // private async void OnDelete1Year(object? sender, RoutedEventArgs e) => await DeleteFiles("1年", DateTime.Now.AddYears(-1), DateTime.Now);
     private async void OnDelete1Year(object? sender, RoutedEventArgs e) =>
-        await DeleteFiles("1年", DateTime.Now.AddYears(-1), DateTime.Now);
+        await DeleteFiles("Past 1 Year", DateTime.Now.AddYears(-1), DateTime.Now);
 
     private async Task DeleteFiles(string label, DateTime from, DateTime to)
     {
@@ -136,13 +151,15 @@ public partial class MainWindow : Window
 
         if (files.Count == 0)
         {
-            await new MessageBox($"削除対象なし", "該当するメモはありません。").ShowDialog(this);
+            // await new MessageBox($"削除対象なし", "該当するメモはありません。").ShowDialog(this);
+            await new MessageBox("No memos found", "No matching memos found.").ShowDialog(this);
             return;
         }
 
+        // var confirmed = await new MessageBox($"{label}のメモを削除", $"{files.Count} 件のメモを削除します。よろしいですか？", confirm: true).ShowDialog<bool>(this);
         var confirmed = await new MessageBox(
-            $"{label}のメモを削除",
-            $"{files.Count} 件のメモを削除します。よろしいですか？",
+            $"Delete memos from {label}",
+            $"Are you sure you want to delete {files.Count} memo(s)?",
             confirm: true).ShowDialog<bool>(this);
 
         if (!confirmed) return;
@@ -166,7 +183,8 @@ public partial class MainWindow : Window
 
         if (entries.Count == 0)
         {
-            new BrowseWindow(title, "該当するメモはありません。").Show(this);
+            // new BrowseWindow(title, "該当するメモはありません。").Show(this);
+            new BrowseWindow(title, "No matching memos found.").Show(this);
             return;
         }
 
@@ -190,9 +208,10 @@ public partial class MainWindow : Window
         var sekkatiFolder = await StorageProvider.TryGetFolderFromPathAsync(
             await GetSekkatiFolderAsync());
 
+        // var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions { Title = "ファイルを開く", ... });
         var files = await StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
-            Title = "ファイルを開く",
+            Title = "Open File",
             AllowMultiple = true,
             FileTypeFilter = FileTypes,
             SuggestedStartLocation = sekkatiFolder,
@@ -238,9 +257,10 @@ public partial class MainWindow : Window
         var sekkatiFolder = await StorageProvider.TryGetFolderFromPathAsync(
             await GetSekkatiFolderAsync());
 
+        // var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions { Title = "名前を付けて保存", ... });
         var file = await StorageProvider.SaveFilePickerAsync(new FilePickerSaveOptions
         {
-            Title = "名前を付けて保存",
+            Title = "Save As",
             DefaultExtension = "txt",
             SuggestedFileName = DateTime.Now.ToString("yyyyMMddHHmmss"),
             SuggestedStartLocation = sekkatiFolder,
